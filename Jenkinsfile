@@ -1,5 +1,5 @@
     pipeline {
-      agent { docker 'maven:3-alpine' } 
+      agent { docker 'jenkins/slave' } 
         stages {
             stage ('Build') {
                 agent {
