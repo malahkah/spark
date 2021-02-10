@@ -7,7 +7,11 @@ pipeline {
     }
     stages {
         stage('Build') { 
-            steps {
+           docker {
+		image 'jenkins/slave'
+		}
+	}
+		 steps {
                 sh 'mvn -B -DskipTests clean package' 
             }
         }
