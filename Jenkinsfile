@@ -1,17 +1,45 @@
 pipeline {
-  agent {
-    docker {
-      args '-v $HOME/.m2:/root/.m2'
-      image 'maven:3-alpine'
+
+    agent any
+
+    tools {
+        maven "Maven"
     }
 
-  }
-  stages {
-    stage('Build') {
-      steps {
-        sh 'mvn -Dmaven.test.skip=true clean package'
-      }
+    options {
+        timestamps()
+        ansiColor("xterm")
     }
 
-  }
+    parameters {
+        booleanParam(name: "RELEASE",
+                description: "Build a release from current commit.",
+                defaultValue: false)
+    }
+
+    stages {
+
+        stage("Build & Deploy SNAPSHOT") {
+            steps {
+                sh "mvn -B deploy"
+            }
+        }
+
+        stage("Release") {
+            when {
+                expression { params.RELEASE }
+            }
+            steps {
+                sh "mvn -B release:prepare"
+                sh "mvn -B release:perform"
+            }
+        }
+
+    }
+
+    post {
+        always {
+            deleteDir()
+        }
+    }
 }
