@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'jenkins-slave-maven'
+      image 'cnservices/jenkins-slave-maven:latest'
     }
 
   }
@@ -9,7 +9,7 @@ pipeline {
     stage('Build') {
       agent {
         docker {
-          image 'jenkins/slave'
+          image 'cnservices/jenkins-slave-maven:latest'
         }
 
       }
@@ -20,6 +20,7 @@ pipeline {
     }
 
     stage('JFROG') {
+      agent any
       steps {
         script {
           def server = Artifactory.server "artifactory"
