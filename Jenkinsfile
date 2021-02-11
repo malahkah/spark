@@ -7,12 +7,7 @@ pipeline {
   }
   stages {
     stage('Build') {
-      agent {
-        docker {
-          image 'cnservices/jenkins-slave-maven:latest'
-        }
-
-      }
+      agent any
       steps {
         snykSecurity(failOnIssues: true, severity: 'High', snykTokenId: '549c12cc-bb4b-429a-8b3a-331bc538ecac', organisation: 'malahkah', projectName: 'spark', monitorProjectOnBuild: true)
         sh 'mvn -B -DskipTests clean package'
