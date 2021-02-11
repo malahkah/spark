@@ -1,6 +1,9 @@
 pipeline {
   agent {
-    docker 'jenkins/slave'
+    docker {
+      image 'jenkins-slave-maven'
+    }
+
   }
   stages {
     stage('Build') {
