@@ -28,7 +28,7 @@
 #   cd dev/create-release/spark-rm
 #   docker build -t spark-rm --build-arg UID=$UID .
 
-FROM ubuntu:20.04
+FROM ubuntu:groovy-20210325
 
 # For apt to be noninteractive
 ENV DEBIAN_FRONTEND noninteractive
