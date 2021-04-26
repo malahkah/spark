@@ -184,7 +184,7 @@
     <datanucleus-core.version>4.1.17</datanucleus-core.version>
     <guava.version>30.0-android</guava.version>
     <janino.version>3.0.16</janino.version>
-    <jersey.version>2.31</jersey.version>
+    <jersey.version>2.34</jersey.version>
     <joda.version>2.10.5</joda.version>
     <jodd.version>3.5.2</jodd.version>
     <jsr305.version>3.0.0</jsr305.version>
